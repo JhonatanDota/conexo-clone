@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import ItemCard from "../components/ItemCard";
 import { GAMES } from "../data/dumyGame";
 import GroupModel from "../models/GroupModel";
@@ -88,15 +89,17 @@ export default function Main() {
     <div className="flex flex-col items-center p-4 w-full md:w-[550px] m-auto gap-8">
       <h1 className="text-3xl text-white font-bold">Conexo Clone</h1>
       <div className="flex flex-wrap w-full">
-        {items.map((item: ItemModel) => (
-          <ItemCard
-            key={item.id}
-            item={item}
-            isSelected={isItemSelected(item)}
-            canSelect={canSelectItem}
-            handleItem={handleItem}
-          />
-        ))}
+        <AnimatePresence>
+          {items.map((item: ItemModel) => (
+            <ItemCard
+              key={item.id}
+              item={item}
+              isSelected={isItemSelected(item)}
+              canSelect={canSelectItem}
+              handleItem={handleItem}
+            />
+          ))}
+        </AnimatePresence>
       </div>
       {completedGroups.map((group: GroupModel) => (
         <h1>{group.color}</h1>
