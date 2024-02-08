@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ItemCard from "../components/ItemCard";
 import { GAMES } from "../data/dumyGame";
 import GroupModel from "../models/GroupModel";
@@ -88,7 +88,25 @@ export default function Main() {
   return (
     <div className="flex flex-col items-center p-4 w-full md:w-[550px] m-auto gap-8">
       <h1 className="text-3xl text-white font-bold">Conexo Clone</h1>
-      <div className="flex flex-wrap w-full">
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold text-white">Completed Groups</h2>
+        <div className="flex flex-wrap">
+          {completedGroups.map((group: GroupModel) => (
+            <motion.div
+              key={group.id}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ duration: 0.9 }}
+            >
+              <>
+                <h1>TESTE</h1>
+              </>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      <div className="relative flex flex-wrap w-full">
         <AnimatePresence>
           {items.map((item: ItemModel) => (
             <ItemCard
@@ -101,9 +119,6 @@ export default function Main() {
           ))}
         </AnimatePresence>
       </div>
-      {completedGroups.map((group: GroupModel) => (
-        <h1>{group.color}</h1>
-      ))}
     </div>
   );
 }
