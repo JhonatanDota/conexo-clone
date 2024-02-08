@@ -13,11 +13,11 @@ export default function ItemCard(props: ItemCardProps) {
 
   return (
     <motion.div
-      key={item.id}
       className="w-1/4 h-24 p-1 cursor-pointer"
+      layout
       initial={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.2 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.4 }}
     >
       <div
         onClick={() => canSelect && handleItem(item)}

@@ -14,7 +14,7 @@ export default function CompletedGroupCard(props: CompletedItemCardProps) {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="flex flex-col p-4 rounded-xl bg-green-400">
         <h1>ABADA</h1>

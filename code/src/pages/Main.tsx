@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion"; // Não é necessário importar motion aqui
+
 import ItemCard from "../components/ItemCard";
 import { GAMES } from "../data/dumyGame";
 import GroupModel from "../models/GroupModel";
@@ -92,6 +93,14 @@ export default function Main() {
         Conexo Clone
       </h1>
 
+      <div className="flex flex-col items-center w-full">
+        <AnimatePresence>
+          {completedGroups.map((group: GroupModel) => (
+            <CompletedGroupCard key={group.id} group={group} />
+          ))}
+        </AnimatePresence>
+      </div>
+
       <div className="relative flex flex-wrap w-full">
         <AnimatePresence>
           {items.map((item: ItemModel) => (
@@ -102,15 +111,6 @@ export default function Main() {
               canSelect={canSelectItem}
               handleItem={handleItem}
             />
-          ))}
-        </AnimatePresence>
-      </div>
-
-      <div className="flex flex-col items-center w-full">
-        <AnimatePresence>
-          {/* <h2 className="text-2xl font-bold text-white">Completed Groups</h2> */}
-          {completedGroups.map((group: GroupModel) => (
-            <CompletedGroupCard key={group.id} group={group} />
           ))}
         </AnimatePresence>
       </div>
