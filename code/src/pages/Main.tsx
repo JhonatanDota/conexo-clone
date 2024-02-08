@@ -15,6 +15,7 @@ export default function Main() {
   const [game] = useState<GameModel>(randomizeGame(GAMES));
 
   const [items, setItems] = useState<ItemModel[]>(getItemsByGame(game));
+  const [completedGroups, setCompletedGroups] = useState<GroupModel[]>([]);
   const [selectedItems, setSelectedItems] = useState<ItemModel[]>([]);
   const [canSelectItem, setCanSelectItem] = useState<boolean>(true);
 
@@ -51,8 +52,22 @@ export default function Main() {
         if (isItemSelected(item)) correctItemsCount++;
       });
 
-      if (correctItemsCount === EXPECTED_CORRECT_ITEMS) alert("AI SIM EM");
+      if (correctItemsCount === EXPECTED_CORRECT_ITEMS) {
+        handleCorrectAttempt(group);
+      }
     });
+  }
+
+  function handleCorrectAttempt(correctGroup: GroupModel): void {
+    const groupItems: ItemModel[] = correctGroup.items;
+
+    setCompletedGroups([...completedGroups, correctGroup]);
+    setItems(
+      items.filter(
+        (item: ItemModel) =>
+          !groupItems.some((groupItem: ItemModel) => groupItem.id === item.id)
+      )
+    );
   }
 
   function handleAttempt(): void {
@@ -83,6 +98,9 @@ export default function Main() {
           />
         ))}
       </div>
+      {completedGroups.map((group: GroupModel) => (
+        <h1>{group.color}</h1>
+      ))}
     </div>
   );
 }
