@@ -16,9 +16,8 @@ export default function ItemCard(props: ItemCardProps) {
       key={item.id}
       className="w-1/4 h-24 p-1 cursor-pointer"
       initial={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 0.9 }}
-      style={{ position: "relative" }}
+      exit={{ opacity: 0, scale: 0.2 }}
+      transition={{ duration: 0.6 }}
     >
       <div
         onClick={() => canSelect && handleItem(item)}

@@ -11,6 +11,7 @@ import {
 } from "../constants";
 import GameModel from "../models/GameModel";
 import { randomizeGame, getItemsByGame } from "../functions/gameFunctions";
+import CompletedGroupCard from "../components/CompletedGroupCard";
 
 export default function Main() {
   const [game] = useState<GameModel>(randomizeGame(GAMES));
@@ -87,25 +88,10 @@ export default function Main() {
 
   return (
     <div className="flex flex-col items-center p-4 w-full md:w-[550px] m-auto gap-8">
-      <h1 className="text-3xl text-white font-bold">Conexo Clone</h1>
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold text-white">Completed Groups</h2>
-        <div className="flex flex-wrap">
-          {completedGroups.map((group: GroupModel) => (
-            <motion.div
-              key={group.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 50 }}
-              transition={{ duration: 0.9 }}
-            >
-              <>
-                <h1>TESTE</h1>
-              </>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+      <h1 className="text-3xl text-white font-bold transition-all">
+        Conexo Clone
+      </h1>
+
       <div className="relative flex flex-wrap w-full">
         <AnimatePresence>
           {items.map((item: ItemModel) => (
@@ -116,6 +102,15 @@ export default function Main() {
               canSelect={canSelectItem}
               handleItem={handleItem}
             />
+          ))}
+        </AnimatePresence>
+      </div>
+
+      <div className="flex flex-col items-center w-full">
+        <AnimatePresence>
+          {/* <h2 className="text-2xl font-bold text-white">Completed Groups</h2> */}
+          {completedGroups.map((group: GroupModel) => (
+            <CompletedGroupCard key={group.id} group={group} />
           ))}
         </AnimatePresence>
       </div>
