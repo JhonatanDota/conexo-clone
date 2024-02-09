@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion"; // Não é necessário importar motion aqui
+import { AnimatePresence } from "framer-motion";
 
 import ItemCard from "../components/ItemCard";
 import { GAMES } from "../data/dumyGame";
@@ -9,6 +9,7 @@ import {
   EXPECTED_CORRECT_ITEMS,
   MAX_SELECTED_ITEMS,
   NEW_ATTEMPT_WAIT_MS,
+  COMPLETE_GROUP_MS,
 } from "../constants";
 import GameModel from "../models/GameModel";
 import { randomizeGame, getItemsByGame } from "../functions/gameFunctions";
@@ -64,13 +65,16 @@ export default function Main() {
   function handleCorrectAttempt(correctGroup: GroupModel): void {
     const groupItems: ItemModel[] = correctGroup.items;
 
-    setCompletedGroups([...completedGroups, correctGroup]);
     setItems(
       items.filter(
         (item: ItemModel) =>
           !groupItems.some((groupItem: ItemModel) => groupItem.id === item.id)
       )
     );
+
+    setTimeout(function () {
+      setCompletedGroups([...completedGroups, correctGroup]);
+    }, COMPLETE_GROUP_MS);
   }
 
   function handleAttempt(): void {
@@ -93,7 +97,7 @@ export default function Main() {
         Conexo Clone
       </h1>
 
-      <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col gap-3 items-center w-full">
         <AnimatePresence>
           {completedGroups.map((group: GroupModel) => (
             <CompletedGroupCard key={group.id} group={group} />

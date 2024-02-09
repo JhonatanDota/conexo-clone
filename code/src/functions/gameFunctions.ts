@@ -9,14 +9,19 @@ export function randomizeGame(games: GameModel[]): GameModel {
   return games[randomIndex];
 }
 
-export function getItemsByGame(game: GameModel): ItemModel[]{
-    return randomizeItems(extractItemsByGame(game));
+export function getItemsByGame(game: GameModel): ItemModel[] {
+  return randomizeItems(extractItemsByGame(game));
 }
 
-function randomizeItems(items: ItemModel[]): ItemModel[]{
-    return items.sort(() => Math.random() - 0.5);
+function randomizeItems(items: ItemModel[]): ItemModel[] {
+  return items.sort(() => Math.random() - 0.5);
 }
 
 function extractItemsByGame(game: GameModel): ItemModel[] {
   return game.groups.flatMap((group: GroupModel) => group.items);
+}
+
+export function concatItemNames(items: ItemModel[]): string {
+  const itemNames: string[] = items.map((item) => item.name);
+  return itemNames.join(", ");
 }

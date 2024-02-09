@@ -6,6 +6,7 @@ export const GAMES: GameModel[] = [
     groups: [
       {
         id: 1,
+        name: "Cores",
         items: [
           {
             id: 1,
@@ -24,11 +25,12 @@ export const GAMES: GameModel[] = [
             name: "Azul",
           },
         ],
-        color: "FFF",
+        color: "#F87526",
       },
 
       {
         id: 2,
+        name: "Insetos",
         items: [
           {
             id: 5,
@@ -47,7 +49,7 @@ export const GAMES: GameModel[] = [
             name: "Berne",
           },
         ],
-        color: "FFF",
+        color: "#4E94F3",
       },
     ],
   },

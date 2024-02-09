@@ -1,3 +1,4 @@
+import { concatItemNames } from "../functions/gameFunctions";
 import GroupModel from "../models/GroupModel";
 import { motion } from "framer-motion";
 
@@ -16,8 +17,14 @@ export default function CompletedGroupCard(props: CompletedItemCardProps) {
       exit={{ opacity: 0, y: 50 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex flex-col p-4 rounded-xl bg-green-400">
-        <h1>ABADA</h1>
+      <div
+        className="flex flex-col items-center p-6 rounded-xl text-white"
+        style={{ backgroundColor: group.color }}
+      >
+        <h2 className="text-xl font-bold">{group.name}</h2>
+        <h3 className="text-lg font-normal uppercase">
+          {concatItemNames(group.items)}
+        </h3>
       </div>
     </motion.div>
   );
