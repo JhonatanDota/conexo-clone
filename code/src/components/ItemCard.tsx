@@ -6,12 +6,12 @@ import { useBetterFitText } from "../functions/utils";
 type ItemCardProps = {
   item: ItemModel;
   isSelected: boolean;
-  canSelect: boolean;
+  checkingAttempt: boolean;
   handleItem: (item: ItemModel) => void;
 };
 
 export default function ItemCard(props: ItemCardProps) {
-  const { item, isSelected, canSelect, handleItem } = props;
+  const { item, isSelected, checkingAttempt, handleItem } = props;
 
   const { fontSize, ref } = useBetterFitText({
     onFinish: () => setItemTextOpacity(100),
@@ -29,14 +29,14 @@ export default function ItemCard(props: ItemCardProps) {
     >
       <div
         ref={ref}
-        onClick={() => canSelect && handleItem(item)}
-        className={`flex justify-center items-center p-2 w-full h-full rounded-md transition-colors ${
-          isSelected ? "bg-blue-400" : "bg-[#1e293b]"
-        }`}
+        onClick={() => !checkingAttempt && handleItem(item)}
+        className={`flex justify-center items-center p-2 w-full h-full rounded-md transition-all ${
+          isSelected ? "bg-blue-400 font-medium" : "bg-[#1e293b]"
+        } ${!isSelected && checkingAttempt && "bg-opacity-75"}`}
       >
         <h2
           style={{ fontSize, opacity: itemTextOpacity }}
-          className="p-1 font-normal uppercase text-white transition-opacity"
+          className="p-1 uppercase text-white transition-opacity select-none"
         >
           {item.name}
         </h2>

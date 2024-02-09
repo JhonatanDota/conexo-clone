@@ -21,7 +21,7 @@ export default function Main() {
   const [items, setItems] = useState<ItemModel[]>(getItemsByGame(game));
   const [completedGroups, setCompletedGroups] = useState<GroupModel[]>([]);
   const [selectedItems, setSelectedItems] = useState<ItemModel[]>([]);
-  const [canSelectItem, setCanSelectItem] = useState<boolean>(true);
+  const [checkingAttempt, setCheckingAttempt] = useState<boolean>(false);
 
   function resetSelectedItems(): void {
     setSelectedItems([]);
@@ -78,11 +78,11 @@ export default function Main() {
   }
 
   function handleAttempt(): void {
-    setCanSelectItem(false);
+    setCheckingAttempt(true);
 
     setTimeout(function () {
       resetSelectedItems();
-      setCanSelectItem(true);
+      setCheckingAttempt(false);
       checkAttempt();
     }, NEW_ATTEMPT_WAIT_MS);
   }
@@ -93,7 +93,7 @@ export default function Main() {
 
   return (
     <div className="flex flex-col items-center px-1 py-4 w-full md:w-[700px] m-auto gap-6 md:gap-8">
-      <h1 className="text-4xl md:text-5xl text-white font-bold transition-all">
+      <h1 className="text-4xl md:text-5xl text-white font-bold transition-all select-none">
         Conexo Clone
       </h1>
 
@@ -112,7 +112,7 @@ export default function Main() {
               key={item.id}
               item={item}
               isSelected={isItemSelected(item)}
-              canSelect={canSelectItem}
+              checkingAttempt={checkingAttempt}
               handleItem={handleItem}
             />
           ))}
