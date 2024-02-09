@@ -1,3 +1,4 @@
+import useFitText from "use-fit-text";
 import { concatItemNames } from "../functions/gameFunctions";
 import GroupModel from "../models/GroupModel";
 import { motion } from "framer-motion";
@@ -9,6 +10,8 @@ type CompletedItemCardProps = {
 export default function CompletedGroupCard(props: CompletedItemCardProps) {
   const { group } = props;
 
+  const { fontSize, ref } = useFitText();
+
   return (
     <motion.div
       className="w-full"
@@ -18,11 +21,12 @@ export default function CompletedGroupCard(props: CompletedItemCardProps) {
       transition={{ duration: 0.5 }}
     >
       <div
-        className="flex flex-col items-center p-6 rounded-xl text-white"
+        ref={ref}
+        className="flex flex-col gap-2 items-center p-6 rounded-xl text-white"
         style={{ backgroundColor: group.color }}
       >
         <h2 className="text-xl font-bold">{group.name}</h2>
-        <h3 className="text-lg font-normal uppercase">
+        <h3 style={{ fontSize }} className="text-lg font-normal uppercase">
           {concatItemNames(group.items)}
         </h3>
       </div>

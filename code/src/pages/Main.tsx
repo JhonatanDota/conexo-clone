@@ -92,8 +92,8 @@ export default function Main() {
   }, [selectedItems]);
 
   return (
-    <div className="flex flex-col items-center p-4 w-full md:w-[550px] m-auto gap-8">
-      <h1 className="text-3xl text-white font-bold transition-all">
+    <div className="flex flex-col items-center px-1 py-4 w-full md:w-[700px] m-auto gap-6 md:gap-8">
+      <h1 className="text-4xl md:text-5xl text-white font-bold transition-all">
         Conexo Clone
       </h1>
 
@@ -105,7 +105,7 @@ export default function Main() {
         </AnimatePresence>
       </div>
 
-      <div className="relative flex flex-wrap w-full">
+      <div className="flex flex-wrap w-full">
         <AnimatePresence>
           {items.map((item: ItemModel) => (
             <ItemCard

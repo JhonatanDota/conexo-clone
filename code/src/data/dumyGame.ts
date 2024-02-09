@@ -22,7 +22,7 @@ export const GAMES: GameModel[] = [
           },
           {
             id: 4,
-            name: "Azul",
+            name: "Violetaaaaaa",
           },
         ],
         color: "#F87526",
