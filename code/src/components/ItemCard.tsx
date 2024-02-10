@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ItemModel from "../models/ItemModel";
 import { motion } from "framer-motion";
-import { useBetterFitText } from "../functions/utils";
+import { useBetterFitText } from "../functions/hooks";
 
 type ItemCardProps = {
   item: ItemModel;
@@ -30,13 +30,12 @@ export default function ItemCard(props: ItemCardProps) {
       <div
         ref={ref}
         onClick={() => !checkingAttempt && handleItem(item)}
-        className={`flex justify-center items-center p-2 w-full h-full rounded-md transition-all ${
-          isSelected ? "bg-blue-400 font-medium" : "bg-[#1e293b]"
-        } ${!isSelected && checkingAttempt && "bg-opacity-75"}`}
+        className={`flex justify-center items-center p-2 w-full h-full rounded-md transition-all ${isSelected ? "bg-blue-400 font-medium" : "bg-[#1e293b]"
+          } ${!isSelected && checkingAttempt && "bg-opacity-75"}`}
       >
         <h2
           style={{ fontSize, opacity: itemTextOpacity }}
-          className="p-1 uppercase text-white transition-opacity select-none"
+          className="text-center p-1 uppercase text-white transition-opacity select-none"
         >
           {item.name}
         </h2>

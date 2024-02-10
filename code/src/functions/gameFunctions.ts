@@ -3,10 +3,17 @@ import GroupModel from "../models/GroupModel";
 import ItemModel from "../models/ItemModel";
 import { randomizeIndex } from "./utils";
 
-export function randomizeGame(games: GameModel[]): GameModel {
+export function randomizeGame(
+  games: GameModel[],
+  preventGame?: GameModel
+): GameModel {
   const randomIndex: number = randomizeIndex(games.length);
+  const randomizedGame: GameModel = games[randomIndex];
 
-  return games[randomIndex];
+  if (preventGame && randomizedGame.id === preventGame.id)
+    return randomizeGame(games, preventGame);
+
+  return randomizedGame;
 }
 
 export function getItemsByGame(game: GameModel): ItemModel[] {
