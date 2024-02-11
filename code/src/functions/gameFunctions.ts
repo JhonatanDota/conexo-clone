@@ -16,6 +16,27 @@ export function randomizeGame(
   return randomizedGame;
 }
 
+export function addNewItemToList(
+  items: ItemModel[],
+  item: ItemModel
+): ItemModel[] {
+  return [...items, item];
+}
+
+export function removeItemFromList(
+  items: ItemModel[],
+  item: ItemModel
+): ItemModel[] {
+  return items.filter((selectedItem: ItemModel) => selectedItem.id !== item.id);
+}
+
+export function checkIsItemSelected(
+  items: ItemModel[],
+  item: ItemModel
+): boolean {
+  return items.some((selectedItem: ItemModel) => selectedItem.id === item.id);
+}
+
 export function getItemsByGame(game: GameModel): ItemModel[] {
   return randomizeItems(extractItemsByGame(game));
 }

@@ -13,7 +13,13 @@ import {
   CHANGE_GAME_WAIT_MS,
 } from "../constants";
 import GameModel from "../models/GameModel";
-import { randomizeGame, getItemsByGame } from "../functions/gameFunctions";
+import {
+  randomizeGame,
+  getItemsByGame,
+  addNewItemToList,
+  removeItemFromList,
+  checkIsItemSelected,
+} from "../functions/gameFunctions";
 import CompletedGroupCard from "../components/CompletedGroupCard";
 import RandomGameButton from "../components/RandomGameButton";
 
@@ -38,24 +44,12 @@ export default function Main() {
   }
 
   function handleItem(item: ItemModel): void {
-    const isSelected: boolean = isItemSelected(item);
-    isSelected ? removeItem(item) : addItem(item);
-  }
+    const isSelected: boolean = checkIsItemSelected(selectedItems, item);
+    const updatedItemList: ItemModel[] = isSelected
+      ? removeItemFromList(selectedItems, item)
+      : addNewItemToList(selectedItems, item);
 
-  function isItemSelected(item: ItemModel): boolean {
-    return selectedItems.some(
-      (selectedItem: ItemModel) => selectedItem.id === item.id
-    );
-  }
-
-  function addItem(item: ItemModel): void {
-    setSelectedItems([...selectedItems, item]);
-  }
-
-  function removeItem(item: ItemModel): void {
-    setSelectedItems(
-      selectedItems.filter((selectedItem) => selectedItem.id !== item.id)
-    );
+    setSelectedItems(updatedItemList);
   }
 
   function checkAttempt(): void {
@@ -63,7 +57,7 @@ export default function Main() {
       let correctItemsCount: number = 0;
 
       group.items.forEach((item: ItemModel) => {
-        if (isItemSelected(item)) correctItemsCount++;
+        if (checkIsItemSelected(selectedItems, item)) correctItemsCount++;
       });
 
       if (correctItemsCount === EXPECTED_CORRECT_ITEMS) {
@@ -138,7 +132,7 @@ export default function Main() {
             <ItemCard
               key={item.id}
               item={item}
-              isSelected={isItemSelected(item)}
+              isSelected={checkIsItemSelected(selectedItems, item)}
               checkingAttempt={checkingAttempt}
               handleItem={handleItem}
             />
