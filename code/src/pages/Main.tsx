@@ -9,7 +9,8 @@ import {
   EXPECTED_CORRECT_ITEMS,
   MAX_SELECTED_ITEMS,
   NEW_ATTEMPT_WAIT_MS,
-  COMPLETE_GROUP_MS,
+  COMPLETE_GROUP_WAIT_MS,
+  CHANGE_GAME_WAIT_MS,
 } from "../constants";
 import GameModel from "../models/GameModel";
 import { randomizeGame, getItemsByGame } from "../functions/gameFunctions";
@@ -36,7 +37,7 @@ export default function Main() {
     setCompletedGroups([]);
   }
 
-  function handleItem(item: ItemModel) {
+  function handleItem(item: ItemModel): void {
     const isSelected: boolean = isItemSelected(item);
     isSelected ? removeItem(item) : addItem(item);
   }
@@ -83,7 +84,7 @@ export default function Main() {
 
     setTimeout(function () {
       setCompletedGroups([...completedGroups, correctGroup]);
-    }, COMPLETE_GROUP_MS);
+    }, COMPLETE_GROUP_WAIT_MS);
   }
 
   function handleAttempt(): void {
@@ -105,7 +106,7 @@ export default function Main() {
     if (hasItems) {
       setTimeout(() => {
         setItems(getItemsByGame(game));
-      }, 1000);
+      }, CHANGE_GAME_WAIT_MS);
     } else {
       setItems(getItemsByGame(game));
     }
