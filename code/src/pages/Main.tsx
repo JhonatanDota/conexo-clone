@@ -22,6 +22,7 @@ import {
 } from "../functions/gameFunctions";
 import CompletedGroupCard from "../components/CompletedGroupCard";
 import RandomGameButton from "../components/RandomGameButton";
+import { wait } from "../functions/utils";
 
 export default function Main() {
   const [game, setGame] = useState<GameModel>(randomizeGame(GAMES));
@@ -76,7 +77,7 @@ export default function Main() {
       )
     );
 
-    setTimeout(function () {
+    wait(() => {
       setCompletedGroups([...completedGroups, correctGroup]);
     }, COMPLETE_GROUP_WAIT_MS);
   }
@@ -84,7 +85,7 @@ export default function Main() {
   function handleAttempt(): void {
     setCheckingAttempt(true);
 
-    setTimeout(function () {
+    wait(() => {
       resetSelectedItems();
       setCheckingAttempt(false);
       checkAttempt();
@@ -93,17 +94,15 @@ export default function Main() {
 
   useEffect(() => {
     const hasItems: boolean = !!items.length;
+    const hasCompletedGroups: boolean = !!completedGroups.length;
+    const newItems: ItemModel[] = getItemsByGame(game);
 
     resetItems();
     resetCompletedGroups();
 
-    if (hasItems) {
-      setTimeout(() => {
-        setItems(getItemsByGame(game));
-      }, CHANGE_GAME_WAIT_MS);
-    } else {
-      setItems(getItemsByGame(game));
-    }
+    if (hasItems || hasCompletedGroups)
+      wait(() => setItems(newItems), CHANGE_GAME_WAIT_MS);
+    else setItems(newItems);
   }, [game]);
 
   useEffect(() => {
