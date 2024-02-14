@@ -22,7 +22,7 @@ export const GAMES: GameModel[] = [
           },
           {
             id: 4,
-            name: "Violetaaaaaa",
+            name: "Violeta",
           },
         ],
         color: "#F87526",
@@ -34,19 +34,19 @@ export const GAMES: GameModel[] = [
         items: [
           {
             id: 5,
-            name: "Verme",
+            name: "Borboleta",
           },
           {
             id: 6,
-            name: "Minhoca",
+            name: "Barbeiro",
           },
           {
             id: 7,
-            name: "Caracol",
+            name: "Besouro",
           },
           {
             id: 8,
-            name: "Berne",
+            name: "Grilo",
           },
         ],
         color: "#4E94F3",
@@ -76,23 +76,23 @@ export const GAMES: GameModel[] = [
       },
       {
         id: 4,
-        name: "Veículos",
+        name: "Nado ___",
         items: [
           {
             id: 13,
-            name: "Carro",
+            name: "Peito",
           },
           {
             id: 14,
-            name: "Bicicleta",
+            name: "Costas",
           },
           {
             id: 15,
-            name: "Avião",
+            name: "Livre",
           },
           {
             id: 16,
-            name: "Barco",
+            name: "Crawl",
           },
         ],
         color: "#32CD32",
@@ -104,92 +104,92 @@ export const GAMES: GameModel[] = [
     groups: [
       {
         id: 5,
-        name: "Animais",
+        name: "Chave de ___",
         items: [
           {
-            id: 33,
-            name: "Cachorro",
+            id: 17,
+            name: "Boca",
           },
           {
-            id: 34,
-            name: "Gato",
+            id: 18,
+            name: "Fenda",
           },
           {
-            id: 35,
-            name: "Elefante",
+            id: 19,
+            name: "Roda",
           },
           {
-            id: 36,
-            name: "Leão",
+            id: 20,
+            name: "Teste",
           },
         ],
         color: "#FF4500",
       },
       {
         id: 6,
-        name: "Países",
+        name: "Rosto",
         items: [
           {
-            id: 37,
-            name: "Brasil",
+            id: 21,
+            name: "Orelha",
           },
           {
-            id: 38,
-            name: "Estados Unidos",
+            id: 22,
+            name: "Nariz",
           },
           {
-            id: 39,
-            name: "Japão",
+            id: 23,
+            name: "Olhos",
           },
           {
-            id: 40,
-            name: "Austrália",
+            id: 24,
+            name: "Testa",
           },
         ],
         color: "#4169E1",
       },
       {
         id: 7,
-        name: "Alimentos",
+        name: "Partes do Carro",
         items: [
           {
-            id: 41,
-            name: "Pizza",
+            id: 25,
+            name: "Volante",
           },
           {
-            id: 42,
-            name: "Hambúrguer",
+            id: 26,
+            name: "Painel",
           },
           {
-            id: 43,
-            name: "Sushi",
+            id: 27,
+            name: "Porta Malas",
           },
           {
-            id: 44,
-            name: "Salada",
+            id: 28,
+            name: "Motor",
           },
         ],
-        color: "#FFD700",
+        color: "#7111D1",
       },
       {
         id: 8,
-        name: "Instrumentos Musicais",
+        name: "Posições no Futebol",
         items: [
           {
-            id: 45,
-            name: "Violão",
+            id: 29,
+            name: "Atacante",
           },
           {
-            id: 46,
-            name: "Piano",
+            id: 30,
+            name: "Zagueiro",
           },
           {
-            id: 47,
-            name: "Bateria",
+            id: 31,
+            name: "Goleiro",
           },
           {
-            id: 48,
-            name: "Violino",
+            id: 32,
+            name: "Meio Campo",
           },
         ],
         color: "#8B008B",
