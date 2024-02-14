@@ -28,7 +28,7 @@ export default function CompletedGroupCard(props: CompletedItemCardProps) {
         <h2 className="text-xl md:text-2xl font-bold">{group.name}</h2>
         <h3
           style={{ fontSize }}
-          className="text-lg md:text-xl font-normal uppercase"
+          className="text-center text-lg md:text-xl font-normal uppercase"
         >
           {concatItemNames(group.items)}
         </h3>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 import ItemCard from "../components/ItemCard";
-import { GAMES } from "../data/dumyGame";
+import { GAMES } from "../data/games";
 import GroupModel from "../models/GroupModel";
 import ItemModel from "../models/ItemModel";
 import {
@@ -98,6 +98,7 @@ export default function Main() {
     const newItems: ItemModel[] = getItemsByGame(game);
 
     resetItems();
+    resetSelectedItems();
     resetCompletedGroups();
 
     if (hasItems || hasCompletedGroups)
